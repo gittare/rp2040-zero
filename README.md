@@ -24,7 +24,10 @@ Based on the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero)
 ## Board dimensions and layers
 
 - **21 mm × 17.5 mm** (Xiao form factor)
-- **2-layer** stack (`layers={2}`); all components **placed on top layer** (`layer="top"`) for matched layer connection and consistent assembly.
+- **2-layer** stack (`layers={2}`), **double-sided assembly**.
+- **Top layer** (correct PCB positions): USB connector (left), RP2040 (center), flash & crystal (near IC), pin header (right).
+- **Bottom layer** (correct PCB positions): power LDO & caps, BOOTSEL/RESET keys, power LED, WS2812B, SWD header.
+- Anchor **bottom_left** so coordinates are `pcbX=0..21`, `pcbY=0..17.5` (mm).
 
 ---
 

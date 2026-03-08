@@ -1,6 +1,8 @@
 /**
  * RP2040-Zero board: 21mm × 17.5mm, Xiao form factor.
- * Composes RP2040, power, USB (with series R), flash, crystal, BOOTSEL/RESET, power LED, WS2812B, SWD header, and pin header.
+ * Top layer: USB, RP2040, flash, crystal, pin header.
+ * Bottom layer: power (LDO), keys, power LED, WS2812B, SWD header.
+ * Anchor: bottom_left so pcbX=0..21, pcbY=0..17.5 (mm).
  */
 import { PowerCircuit } from "../lib/PowerCircuit"
 import { UsbCircuit } from "../lib/UsbCircuit"
@@ -19,18 +21,24 @@ export const RP2040ZeroBoard = () => (
     height="17.5mm"
     title="RP2040-Zero"
     layers={2}
+    doubleSidedAssembly
+    boardAnchorAlignment="bottom_left"
+    boardAnchorPosition={{ x: 0, y: 0 }}
     routingDisabled
     schMaxTraceDistance={5}
   >
-    <PowerCircuit layer="top" />
-    <UsbCircuit layer="top" />
-    <RP2040Circuit layer="top" />
-    <FlashCircuit layer="top" />
-    <CrystalCircuit layer="top" />
-    <KeyCircuit layer="top" />
-    <PowerLedCircuit layer="top" />
-    <LedCircuit layer="top" />
-    <SwdCircuit layer="top" />
-    <PinOutCircuit layer="top" />
+    {/* Top layer: connectors and main ICs */}
+    <UsbCircuit layer="top" pcbX={2} pcbY={8.75} />
+    <RP2040Circuit layer="top" pcbX={10.5} pcbY={8.75} />
+    <FlashCircuit layer="top" pcbX={13} pcbY={11} />
+    <CrystalCircuit layer="top" pcbX={8} pcbY={12} />
+    <PinOutCircuit layer="top" pcbX={19.5} pcbY={8.75} />
+
+    {/* Bottom layer: power, keys, LEDs, SWD */}
+    <PowerCircuit layer="bottom" pcbX={5} pcbY={5} />
+    <KeyCircuit layer="bottom" pcbX={10.5} pcbY={4} />
+    <PowerLedCircuit layer="bottom" pcbX={15} pcbY={5} />
+    <LedCircuit layer="bottom" pcbX={16} pcbY={10} />
+    <SwdCircuit layer="bottom" pcbX={3} pcbY={14} />
   </board>
 )
