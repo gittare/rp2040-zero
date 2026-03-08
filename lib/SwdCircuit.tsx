@@ -1,8 +1,8 @@
 /**
  * SWD debug header: SWDIO, SWCLK, GND, 3V3 for external debug probe (e.g. CMSIS-DAP, J-Link).
  */
-export const SwdCircuit = () => (
-  <group>
+export const SwdCircuit = (props: React.ComponentProps<"group">) => (
+  <group {...props}>
     <chip
       name="J_SWD"
       footprint="pin_header_1x04_p2.54mm"

@@ -1,8 +1,8 @@
 /**
  * Power-on indicator LED: V3_3 → resistor → LED → GND.
  */
-export const PowerLedCircuit = () => (
-  <group>
+export const PowerLedCircuit = (props: React.ComponentProps<"group">) => (
+  <group {...props}>
     <resistor
       name="R_PWR_LED"
       resistance="2.2k"

@@ -18,18 +18,19 @@ export const RP2040ZeroBoard = () => (
     width="21mm"
     height="17.5mm"
     title="RP2040-Zero"
+    layers={2}
     routingDisabled
     schMaxTraceDistance={5}
   >
-    <PowerCircuit />
-    <UsbCircuit />
-    <RP2040Circuit />
-    <FlashCircuit />
-    <CrystalCircuit />
-    <KeyCircuit />
-    <PowerLedCircuit />
-    <LedCircuit />
-    <SwdCircuit />
-    <PinOutCircuit />
+    <PowerCircuit layer="top" />
+    <UsbCircuit layer="top" />
+    <RP2040Circuit layer="top" />
+    <FlashCircuit layer="top" />
+    <CrystalCircuit layer="top" />
+    <KeyCircuit layer="top" />
+    <PowerLedCircuit layer="top" />
+    <LedCircuit layer="top" />
+    <SwdCircuit layer="top" />
+    <PinOutCircuit layer="top" />
   </board>
 )

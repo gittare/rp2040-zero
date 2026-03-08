@@ -1,4 +1,4 @@
-export const PinOutCircuit = () => (
+export const PinOutCircuit = (props: React.ComponentProps<"chip">) => (
   <chip
     name="P1"
     footprint="stampboard_left9_right9_bottom5_top0_p2.54mm_innerhole_h23.8mm_showpinlabels"
@@ -83,5 +83,6 @@ export const PinOutCircuit = () => (
       GP1: "net.GPIO1",
       GP0: "net.GPIO0",
     }}
+    {...props}
   />
 )

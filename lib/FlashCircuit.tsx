@@ -1,7 +1,8 @@
 import { W25Q16JVUXIQ } from "../imports/W25Q16JVUXIQ"
+import type { GroupProps } from "@tscircuit/props"
 
-export const FlashCircuit = () => (
-  <group>
+export const FlashCircuit = (props: GroupProps) => (
+  <group {...props}>
     <capacitor
       name="C3"
       capacitance="1uF"

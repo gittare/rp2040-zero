@@ -2,8 +2,8 @@
  * USB circuit: connector, series resistors (signal integrity/ESD), data lines to RP2040.
  * VBUS → VSYS, D+/D- via 22Ω to USB_DP/USB_DM.
  */
-export const UsbCircuit = () => (
-  <group>
+export const UsbCircuit = (props: React.ComponentProps<"group">) => (
+  <group {...props}>
     <chip
       name="J1"
       footprint="usb_micro_b"

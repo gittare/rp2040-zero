@@ -15,15 +15,16 @@ Based on the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero)
 - **USB**: Micro-B connector; D+/D- with 22 Ω series resistors (signal integrity/ESD); VBUS → VSYS
 - **Flash**: W25Q16JVUXIQ (QSPI) for program storage
 - **Crystal**: 12 MHz oscillator (ABM8 27.2 MHz or equivalent) for system clock
-- **Buttons**: BOOTSEL (QSPI_SS_N, for USB boot) and RESET (RUN to GND)
+- **Buttons**: BOOTSEL (QSPI_SS_N, for USB boot) and RESET (RUN to GND); RUN has 10 kΩ pull-up to 3V3
 - **Power LED**: Green indicator from 3.3 V rail
 - **Status LED**: WS2812B addressable RGB on GPIO16
 - **SWD debug header**: 4-pin (SWDIO, SWCLK, GND, 3V3) for CMSIS-DAP / J-Link
 - **Pin header**: Xiao-style stamp (VSYS, GND, 3V3, GP29–GP26, GP15–GP0)
 
-## Board dimensions
+## Board dimensions and layers
 
 - **21 mm × 17.5 mm** (Xiao form factor)
+- **2-layer** stack (`layers={2}`); all components **placed on top layer** (`layer="top"`) for matched layer connection and consistent assembly.
 
 ---
 
@@ -88,5 +89,22 @@ Based on the [Waveshare RP2040-Zero](https://www.waveshare.com/wiki/RP2040-Zero)
 | GPIO0–16, GPIO26–29 | GPIO to header |
 | QSPI_SS_N, QSPI_SCLK, QSPI_SD0–SD3 | Flash QSPI |
 | SWDIO, SWCLK | SWD debug       |
-| RUN    | Reset pin          |
+| RUN    | Reset pin (pulled high via R_RUN) |
 | XIN, XOUT | Crystal        |
+
+---
+
+## Recommended future updates
+
+Optional improvements to get even closer to production or reference designs:
+
+| Priority | Update | Why |
+|----------|--------|-----|
+| **Done** | RUN pull-up (10 kΩ to 3V3) | RUN must be high when RESET is released; was floating. |
+| **High** | **Test points** | Add small test points on GND, 3V3, VSYS (and optionally SWDIO/SWCLK) for scope/probe during bring-up. |
+| **High** | **Silkscreen / fabrication** | Use `silkscreentext` or `fabricationnotetext` for board name, revision (e.g. "RP2040-Zero v1.0"), and any fab notes (finish, stack). |
+| **Medium** | **USB TVS** | Add a TVS diode (e.g. USBLC6-2SC6 style) on USB_DP/USB_DM to GND for ESD; 22 Ω series R already in place. |
+| **Medium** | **Config / constants** | Centralize net names or key values (e.g. `NETS.ts` or `boardConstants.ts`) to avoid typos and simplify changes. |
+| **Low** | **CHANGELOG** | Add a `CHANGELOG.md` for version history and "Fixes #2" release note. |
+| **Low** | **XiaoBoard wrapper** | If `@tscircuit/common` (or equivalent) provides `<XiaoBoard variant="RP2040" />`, switch to it for standard mechanical/header layout. |
+| **Low** | **Fuse / PTC on VBUS** | Optional polyfuse or PTC on USB VBUS for overcurrent protection (match real RP2040-Zero if present). |

@@ -1,7 +1,8 @@
 import { WS2812B_2020 } from "../imports/WS2812B_2020"
+import type { GroupProps } from "@tscircuit/props"
 
-export const LedCircuit = () => (
-  <group>
+export const LedCircuit = (props: GroupProps) => (
+  <group {...props}>
     <WS2812B_2020
       name="L1"
       connections={{
