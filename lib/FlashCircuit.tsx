@@ -19,7 +19,7 @@ export const FlashCircuit = () => (
         GND: "net.GND",
         VCC: "C3.1",
         HOLD_N: "net.QSPI_SD3",
-        CLK: "net.QSPI_CLK",
+        CLK: "net.QSPI_SCLK",
         DI: "net.QSPI_SD0",
       }}
     />
