@@ -11,24 +11,28 @@ export const PowerCircuit = (groupProps: GroupProps) => (
       schOrientation="vertical"
       footprint="0402"
       capacitance="2.2uF"
+      connections={{ pin1: "net.VSYS", pin2: "net.GND" }}
     />
     <capacitor
       name="C1"
       schOrientation="vertical"
       footprint="0402"
       capacitance="2.2uF"
+      connections={{ pin1: "net.VSYS", pin2: "net.GND" }}
     />
     <capacitor
       name="C2"
       schOrientation="vertical"
       footprint="0402"
       capacitance="2.2uF"
+      connections={{ pin1: "net.VSYS", pin2: "net.GND" }}
     />
     <capacitor
       name="C5"
       schOrientation="vertical"
       footprint="0402"
       capacitance="1uF"
+      connections={{ pin1: "net.V3_3", pin2: "net.GND" }}
     />
     <capacitor
       name="C4"
@@ -49,6 +53,5 @@ export const PowerCircuit = (groupProps: GroupProps) => (
         VOUT: ["net.V3_3", "C5.1", "C4.1"],
       }}
     />
-    <trace from="C5.2" to="net.GND" />
   </group>
 )

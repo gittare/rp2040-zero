@@ -1,6 +1,6 @@
 /**
- * USB circuit: connector, USB_DP/USB_DM data lines, power (VSYS), ESD protection placeholder.
- * Connects USB connector to RP2040 USB pins and VSYS rail.
+ * USB circuit: connector, series resistors (signal integrity/ESD), data lines to RP2040.
+ * VBUS → VSYS, D+/D- via 22Ω to USB_DP/USB_DM.
  */
 export const UsbCircuit = () => (
   <group>
@@ -22,9 +22,27 @@ export const UsbCircuit = () => (
       }}
       connections={{
         VBUS: "net.VSYS",
-        DM: "net.USB_DM",
-        DP: "net.USB_DP",
+        DM: "R_USB_DM.pin1",
+        DP: "R_USB_DP.pin1",
         GND: "net.GND",
+      }}
+    />
+    <resistor
+      name="R_USB_DP"
+      resistance="22"
+      footprint="0402"
+      schOrientation="vertical"
+      connections={{
+        pin2: "net.USB_DP",
+      }}
+    />
+    <resistor
+      name="R_USB_DM"
+      resistance="22"
+      footprint="0402"
+      schOrientation="vertical"
+      connections={{
+        pin2: "net.USB_DM",
       }}
     />
   </group>
